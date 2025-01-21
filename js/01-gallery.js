@@ -5,9 +5,11 @@ console.log(galleryItems);
 
 const containerItemsGalleryEl = document.querySelector(".gallery");
 console.log(containerItemsGalleryEl);
-
-const markupCardsOfGalleryEl = galleryItems.map(({ preview, original, description }) => {
-  return `<li class="gallery-item">
+const markupCardsOfGalleryEl = createMurkup();
+  
+function createMurkup () {
+    galleryItems.map(({ preview, original, description }) => {
+      return `<li class="gallery-item">
   <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
@@ -17,5 +19,8 @@ const markupCardsOfGalleryEl = galleryItems.map(({ preview, original, descriptio
     />
   </a>
 </li>`;
-});
-containerItemsGalleryEl.insertAdjacentHTML('beforeend', markupCardsOfGalleryEl.join(''));
+    });
+    containerItemsGalleryEl.insertAdjacentHTML('beforeend', markupCardsOfGalleryEl.join(''));
+}
+createMurkup();
+  
