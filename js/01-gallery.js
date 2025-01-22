@@ -3,26 +3,22 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-const containerItemsGalleryEl = document.querySelector(".gallery");
-console.log(containerItemsGalleryEl);
-const markupCardsOfGalleryEl = createMurkup(galleryItems);
-  console.log(markupCardsOfGalleryEl);
-function createMurkup (galleryItems) {
+const gallery = document.querySelector('.gallery');
+const markup = createMurkup(galleryItems);
+
+function createMurkup() {
   return galleryItems.map(({ preview, original, description }) => {
-      return `<li class="gallery_item">
-  <a class="gallery-link" href="${original}">
+    return `<li class="gallery__item">
+      <a class="gallery-link" href="${original}">
     <img
-      class="gallery_image"
+      class="gallery__image"
       src="${preview}"
       data-source="${original}"
       alt="${description}"
-      width = 100%
     />
   </a>
-</li>`
-    }).join('');
-}
-createMurkup(galleryItems);
-
-containerItemsGalleryEl.insertAdjacentHTML("beforeend", markupCardsOfGalleryEl);
+</li>`;
+    }).join('')
+  }
+gallery.insertAdjacentHTML('beforeend', markup);
   
