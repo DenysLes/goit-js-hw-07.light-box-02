@@ -5,22 +5,24 @@ console.log(galleryItems);
 
 const containerItemsGalleryEl = document.querySelector(".gallery");
 console.log(containerItemsGalleryEl);
-const markupCardsOfGalleryEl = createMurkup();
-  
-function createMurkup () {
-    galleryItems.map(({ preview, original, description }) => {
-      return `<li class="gallery-item">
+const markupCardsOfGalleryEl = createMurkup(galleryItems);
+  console.log(markupCardsOfGalleryEl);
+function createMurkup (galleryItems) {
+  return galleryItems.map(({ preview, original, description }) => {
+      return `<li class="gallery_item">
   <a class="gallery-link" href="${original}">
     <img
-      class="gallery-image"
+      class="gallery_image"
       src="${preview}"
       data-source="${original}"
       alt="${description}"
+      width = 100%
     />
   </a>
-</li>`;
-    });
-    containerItemsGalleryEl.insertAdjacentHTML('beforeend', markupCardsOfGalleryEl.join(''));
+</li>`
+    }).join('');
 }
-createMurkup();
+createMurkup(galleryItems);
+
+containerItemsGalleryEl.insertAdjacentHTML("beforeend", markupCardsOfGalleryEl);
   
