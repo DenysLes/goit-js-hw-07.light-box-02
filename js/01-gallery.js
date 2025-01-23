@@ -9,7 +9,7 @@ const markup = createMurkup(galleryItems);
 function createMurkup() {
   return galleryItems.map(({ preview, original, description }) => {
     return `<li class="gallery__item">
-      <a class="gallery-link" href="${original}">
+
     <img
       class="gallery__image"
       src="${preview}"
@@ -21,4 +21,39 @@ function createMurkup() {
     }).join('')
   }
 gallery.insertAdjacentHTML('beforeend', markup);
+gallery.addEventListener("click", handelEventClick);
+
+function handelEventClick(event) {
+  event.preventDefault();
+ 
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
+    const instance = basicLightbox.create(
+    `<img src="${event.target.dataset.source}" width="800" height="600" />`,
+
+    {
+      onShow: () => {
+        window.addEventListener('keydown', onKeydownEsc);
+      },
+      onClose: () => {
+        window.removeEventListener('keydown', onKeydownEsc);
+      },
+    },
+  );
+
+  // instance.show();
+
+  const onKeydownEsc = event => {
+    console.log(event.code);
+    if (event.code === 'Escape') {
+      instance.close();
+    }
+  };
+  // window.addEventListener('keydown', onKeydownEsc);
+  // window.removeEventListener('keydown', onKeydownEsc);
+
+  instance.show();
+
+}
   
